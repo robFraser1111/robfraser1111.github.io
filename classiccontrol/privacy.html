@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Classic Control privacy policy</title>
+  <style>
+    body { margin: 0; font: 16px/1.5 system-ui, sans-serif; background: #0C1218; color: #E5E7EB; }
+    main { max-width: 40rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1 { font-size: 1.75rem; color: #fff; }
+    h2 { font-size: 1.1rem; color: #5EC8F0; margin-top: 2rem; }
+    a { color: #5EC8F0; }
+    .meta { color: #9CA3AF; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Classic Control privacy policy</h1>
+    <p class="meta">Effective 11 September 2026. Operator: Rob Fraser (Australia), publishing as Classic Control. Not affiliated with Sonos, Inc. Classic Control is an independent classic controller that works with Sonos speakers on your LAN.</p>
+
+    <h2>What Classic Control is</h2>
+    <p>Classic Control is a native Android remote in the style of a classic hardware controller. Core playback — rooms, volume, queue, music library, radio, line-in, alarms, and sleep timer — talks to speakers on your <strong>local Wi-Fi / LAN</strong> using SSDP and UPnP (SOAP). No Classic Control account is required for that core control. Setup, music-service login, and household linking stay in the official Sonos app.</p>
+
+    <h2>Data that stays on your device</h2>
+    <p>The app stores preferences locally (Android SharedPreferences), including Live vs Demo mode, last-used room hints, and — if you complete an optional SMAPI DeviceLink / AppLink browse handshake — music-service browse tokens (<code>authToken</code> / key) for this phone only. Those tokens are used so this device can browse a household-linked catalogue. They are not a Classic Control cloud login and are not a substitute for linking the service in the official Sonos app.</p>
+    <p>We do not operate a Classic Control account system or user database. Uninstalling the app removes this local data from the phone.</p>
+
+    <h2>Local network</h2>
+    <p>On the same Wi-Fi, Classic Control discovers and controls players over local HTTP (including cleartext on port 1400 where the speaker firmware requires it). That traffic stays on your network. We do not proxy those commands through our servers.</p>
+
+    <h2>Optional internet use (SMAPI browse)</h2>
+    <p>When you open a household-linked music service tile, browse/search calls go to the service endpoint the speaker already advertises (HTTPS SMAPI). Classic Control does not send those requests through a Rob Fraser server. You can use rooms, volume, queue, library, radio, and line-in without storing SMAPI tokens.</p>
+
+    <h2>What we do not do</h2>
+    <p>No Classic Control accounts, no ads, no in-app purchases, no selling personal information, no tracking you across other apps or sites. The app does not use advertising IDs and does not include a third-party analytics SDK.</p>
+
+    <h2>Crash and error reporting</h2>
+    <p>Classic Control does <strong>not</strong> embed Sentry or any other third-party crash reporter. If you install a build from Google Play, Google may collect anonymised crash and ANR reports through Android Vitals as part of Play — that is Google’s store infrastructure, not an SDK we ship. We do not sell that data.</p>
+
+    <h2>Children</h2>
+    <p>Classic Control is a home music remote, not directed at children under 13. We do not knowingly collect personal information from children.</p>
+
+    <h2>Contact</h2>
+    <p>Questions or deletion requests: email <a href="mailto:robfraserdesign@gmail.com">robfraserdesign@gmail.com</a>, or open an issue on <a href="https://github.com/robFraser1111/classiccontrol-android/issues">classiccontrol-android</a>.</p>
+  </main>
+</body>
+</html>
