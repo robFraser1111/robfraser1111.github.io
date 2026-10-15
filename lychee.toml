@@ -1,0 +1,53 @@
+# Link checker for this static GitHub Pages site.
+# Wired up by .github/workflows/link-check.yml (lycheeverse/lychee).
+#
+# The site is plain HTML (see .nojekyll), so there is no build step.
+# Root-relative links such as `/airhand/privacy.html` are resolved with
+# `--root-dir` in the workflow. That path must be absolute, so it is not
+# set here.
+
+verbose = "info"
+no_progress = true
+
+# Check in-page anchors (`#section`) and text fragments (`#:~:text=...`).
+include_fragments = "full"
+
+# Directory links (for example `/`) must resolve to index.html, matching
+# how GitHub Pages serves this site.
+index_files = ["index.html"]
+
+# Do not probe mailto: addresses. Lychee verifies mail by opening SMTP on
+# port 25, which GitHub-hosted runners and many networks block. That shows
+# up as a timeout, not as a verdict on the address. Mailto links stay in
+# the pages; they are just not part of this check.
+include_mail = false
+
+# External requests: retry transient failures, wait between attempts, and
+# cap how hard we hit any one host so rate limits are less likely.
+max_retries = 4
+retry_wait_time = 3
+timeout = 30
+max_concurrency = 8
+host_concurrency = 2
+host_request_interval = "200ms"
+max_redirects = 10
+
+# GET avoids hosts that reject HEAD with 405 while the page itself is fine.
+method = "get"
+
+# 2xx is success. 403 and 429 are treated as OK because many sites use
+# them for bot challenges and rate limits rather than a missing page.
+accept = ["200..=299", "403", "429"]
+
+# Timeouts still fail the check. Retries and the 30s timeout cover blips;
+# a host that never answers should not go green.
+accept_timeouts = false
+
+# Known-flaky or bot-hostile domains. These block automated clients (or
+# return inconsistent statuses) even when a browser can open the URL.
+exclude = [
+  # LinkedIn answers non-browser clients with 999 / 403 / a challenge page.
+  '^https?://([a-z0-9-]+\.)*linkedin\.com',
+  # lnkd.in short links redirect into LinkedIn and hit the same bot wall.
+  '^https?://([a-z0-9-]+\.)*lnkd\.in',
+]
